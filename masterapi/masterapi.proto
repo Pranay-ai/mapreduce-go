@@ -9,6 +9,44 @@ service MasterApi {
     rpc RegisterWorker (RegisterWorkerRequest) returns (RegisterWorkerResponse);
     rpc Heartbeat(HeartbeatRequest) returns (HeartbeatResponse);
 
-
 }
 
+
+message GetTaskRequest {
+    string worker_id = 1;
+}
+message GetTaskResponse {
+    string task_id = 1;
+    string task_type = 2;
+    string task_data_path = 3;
+}
+
+message SubmitTaskRequest {
+    string worker_id = 1;
+    string task_id = 2;
+    string task_type = 3;
+    string result_data_path = 4;
+}
+message SubmitTaskResponse {
+    bool success = 1;
+    string message = 2;
+}
+message RegisterWorkerRequest {
+    string worker_id = 1;
+    string worker_address = 2;
+    string worker_port = 3;
+}
+
+message RegisterWorkerResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message HeartbeatRequest {
+    string worker_id = 1;
+}
+
+message HeartbeatResponse {
+    bool success = 1;
+    string message = 2;
+}

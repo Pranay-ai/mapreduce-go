@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"crypto/sha1"
 	"encoding/hex"
+	"encoding/json"
 	"fmt"
 	"io"
 	"os"
@@ -15,8 +16,19 @@ type FileUtility struct {
 	OutputFilePath string
 }
 
-// SplitFileIntoChunks splits the input file into chunks of specified size (bytes)
-// and stores them in a subdirectory under OutputFilePath with a unique hashed name.
+// ChunkMetadata holds metadata for a single chunk
+type ChunkMetadata struct {
+	ChunkID  string `json:"chunk_id"`
+	FilePath string `json:"file_path"`
+}
+
+// FileMetadata holds metadata for all chunks of a file
+type FileMetadata struct {
+	OriginalFileName string          `json:"original_file_name"`
+	Chunks           []ChunkMetadata `json:"chunks"`
+}
+
+// SplitFileIntoChunks splits the input file into chunks and generates metadata
 func (fu *FileUtility) SplitFileIntoChunks(chunkSize int) error {
 	// Step 1: Hash the input file name
 	hash := sha1.Sum([]byte(fu.InputFilePath))
@@ -41,10 +53,15 @@ func (fu *FileUtility) SplitFileIntoChunks(chunkSize int) error {
 	buffer := make([]byte, chunkSize)
 	chunkNumber := 0
 
+	// Collect metadata
+	var metadata FileMetadata
+	metadata.OriginalFileName = filepath.Base(fu.InputFilePath)
+
 	for {
 		n, err := reader.Read(buffer)
 		if n > 0 {
-			chunkFileName := fmt.Sprintf("chunk_%d", chunkNumber)
+			chunkID := fmt.Sprintf("chunk_%d", chunkNumber)
+			chunkFileName := chunkID
 			chunkFilePath := filepath.Join(outputDir, chunkFileName)
 
 			chunkFile, err := os.Create(chunkFilePath)
@@ -57,8 +74,14 @@ func (fu *FileUtility) SplitFileIntoChunks(chunkSize int) error {
 				chunkFile.Close()
 				return fmt.Errorf("failed to write chunk file: %w", writeErr)
 			}
-
 			chunkFile.Close()
+
+			// Add to metadata
+			metadata.Chunks = append(metadata.Chunks, ChunkMetadata{
+				ChunkID:  chunkID,
+				FilePath: chunkFilePath,
+			})
+
 			chunkNumber++
 		}
 
@@ -69,6 +92,20 @@ func (fu *FileUtility) SplitFileIntoChunks(chunkSize int) error {
 		if err != nil {
 			return fmt.Errorf("error reading input file: %w", err)
 		}
+	}
+
+	// Step 5: Save metadata.json in the output directory
+	metadataFilePath := filepath.Join(outputDir, "metadata.json")
+	metadataFile, err := os.Create(metadataFilePath)
+	if err != nil {
+		return fmt.Errorf("failed to create metadata file: %w", err)
+	}
+	defer metadataFile.Close()
+
+	encoder := json.NewEncoder(metadataFile)
+	encoder.SetIndent("", "  ")
+	if err := encoder.Encode(metadata); err != nil {
+		return fmt.Errorf("failed to write metadata: %w", err)
 	}
 
 	return nil

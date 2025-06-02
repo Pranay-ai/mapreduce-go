@@ -40,7 +40,32 @@ func (s *MasterServer) GetMapTask(ctx context.Context, req *masterapi.GetMapTask
 
 	return &masterapi.GetMapTaskResponse{
 		TaskId:       task.TaskID,
-		TaskType:     task.TaskType,
 		TaskDataPath: task.InputFilePath,
+	}, nil
+}
+func (s *MasterServer) SubmitMapTask(ctx context.Context, req *masterapi.SubmitMapTaskRequest) (*masterapi.SubmitMapTaskResponse, error) {
+
+	workerId := req.GetWorkerId()
+	taskId := req.GetTaskId()
+	intermediateFilePath := req.GetResultDataPath()
+
+	err := s.masterNode.SubmitMapTask(workerId, taskId, intermediateFilePath)
+	if err != nil {
+		return nil, err
+	}
+	return &masterapi.SubmitMapTaskResponse{
+		Success: true,
+		Message: "Map task submitted successfully",
+	}, nil
+
+}
+
+func (s *MasterServer) Heartbeat(ctx context.Context, req *masterapi.HeartbeatRequest) (*masterapi.HeartbeatResponse, error) {
+	workerID := req.GetWorkerId()
+	s.masterNode.PingFromWorker(workerID)
+
+	return &masterapi.HeartbeatResponse{
+		Success: true,
+		Message: "Heartbeat received",
 	}, nil
 }

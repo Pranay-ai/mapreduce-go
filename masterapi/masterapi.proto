@@ -15,14 +15,12 @@ message GetMapTaskRequest {
 
 message GetMapTaskResponse {
     string task_id = 1;
-    string task_type = 2;
     string task_data_path = 3;
 }
 
 message SubmitMapTaskRequest {
     string worker_id = 1;
     string task_id = 2;
-    string task_type = 3;
     string result_data_path = 4;
 }
 

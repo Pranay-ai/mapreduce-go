@@ -110,3 +110,9 @@ func (fu *FileUtility) SplitFileIntoChunks(chunkSize int) error {
 
 	return nil
 }
+
+// GetHashedDirName returns the hashed directory name based on InputFilePath
+func (fu *FileUtility) GetHashedDirName() string {
+	hash := sha1.Sum([]byte(fu.InputFilePath))
+	return hex.EncodeToString(hash[:])
+}

@@ -3,34 +3,34 @@ syntax = "proto3";
 option go_package = "./;masterapi";
 
 service MasterApi {
-
-    rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
-    rpc SubmitTask(SubmitTaskRequest) returns (SubmitTaskResponse);
-    rpc RegisterWorker (RegisterWorkerRequest) returns (RegisterWorkerResponse);
+    rpc GetMapTask(GetMapTaskRequest) returns (GetMapTaskResponse);
+    rpc SubmitMapTask(SubmitMapTaskRequest) returns (SubmitMapTaskResponse);
+    rpc RegisterWorker(RegisterWorkerRequest) returns (RegisterWorkerResponse);
     rpc Heartbeat(HeartbeatRequest) returns (HeartbeatResponse);
-
 }
 
-
-message GetTaskRequest {
+message GetMapTaskRequest {
     string worker_id = 1;
 }
-message GetTaskResponse {
+
+message GetMapTaskResponse {
     string task_id = 1;
     string task_type = 2;
     string task_data_path = 3;
 }
 
-message SubmitTaskRequest {
+message SubmitMapTaskRequest {
     string worker_id = 1;
     string task_id = 2;
     string task_type = 3;
     string result_data_path = 4;
 }
-message SubmitTaskResponse {
+
+message SubmitMapTaskResponse {
     bool success = 1;
     string message = 2;
 }
+
 message RegisterWorkerRequest {
     string worker_id = 1;
     string worker_address = 2;

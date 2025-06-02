@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MasterApi_GetTask_FullMethodName        = "/MasterApi/GetTask"
-	MasterApi_SubmitTask_FullMethodName     = "/MasterApi/SubmitTask"
+	MasterApi_GetMapTask_FullMethodName     = "/MasterApi/GetMapTask"
+	MasterApi_SubmitMapTask_FullMethodName  = "/MasterApi/SubmitMapTask"
 	MasterApi_RegisterWorker_FullMethodName = "/MasterApi/RegisterWorker"
 	MasterApi_Heartbeat_FullMethodName      = "/MasterApi/Heartbeat"
 )
@@ -29,8 +29,8 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MasterApiClient interface {
-	GetTask(ctx context.Context, in *GetTaskRequest, opts ...grpc.CallOption) (*GetTaskResponse, error)
-	SubmitTask(ctx context.Context, in *SubmitTaskRequest, opts ...grpc.CallOption) (*SubmitTaskResponse, error)
+	GetMapTask(ctx context.Context, in *GetMapTaskRequest, opts ...grpc.CallOption) (*GetMapTaskResponse, error)
+	SubmitMapTask(ctx context.Context, in *SubmitMapTaskRequest, opts ...grpc.CallOption) (*SubmitMapTaskResponse, error)
 	RegisterWorker(ctx context.Context, in *RegisterWorkerRequest, opts ...grpc.CallOption) (*RegisterWorkerResponse, error)
 	Heartbeat(ctx context.Context, in *HeartbeatRequest, opts ...grpc.CallOption) (*HeartbeatResponse, error)
 }
@@ -43,20 +43,20 @@ func NewMasterApiClient(cc grpc.ClientConnInterface) MasterApiClient {
 	return &masterApiClient{cc}
 }
 
-func (c *masterApiClient) GetTask(ctx context.Context, in *GetTaskRequest, opts ...grpc.CallOption) (*GetTaskResponse, error) {
+func (c *masterApiClient) GetMapTask(ctx context.Context, in *GetMapTaskRequest, opts ...grpc.CallOption) (*GetMapTaskResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetTaskResponse)
-	err := c.cc.Invoke(ctx, MasterApi_GetTask_FullMethodName, in, out, cOpts...)
+	out := new(GetMapTaskResponse)
+	err := c.cc.Invoke(ctx, MasterApi_GetMapTask_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *masterApiClient) SubmitTask(ctx context.Context, in *SubmitTaskRequest, opts ...grpc.CallOption) (*SubmitTaskResponse, error) {
+func (c *masterApiClient) SubmitMapTask(ctx context.Context, in *SubmitMapTaskRequest, opts ...grpc.CallOption) (*SubmitMapTaskResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SubmitTaskResponse)
-	err := c.cc.Invoke(ctx, MasterApi_SubmitTask_FullMethodName, in, out, cOpts...)
+	out := new(SubmitMapTaskResponse)
+	err := c.cc.Invoke(ctx, MasterApi_SubmitMapTask_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,8 +87,8 @@ func (c *masterApiClient) Heartbeat(ctx context.Context, in *HeartbeatRequest, o
 // All implementations must embed UnimplementedMasterApiServer
 // for forward compatibility.
 type MasterApiServer interface {
-	GetTask(context.Context, *GetTaskRequest) (*GetTaskResponse, error)
-	SubmitTask(context.Context, *SubmitTaskRequest) (*SubmitTaskResponse, error)
+	GetMapTask(context.Context, *GetMapTaskRequest) (*GetMapTaskResponse, error)
+	SubmitMapTask(context.Context, *SubmitMapTaskRequest) (*SubmitMapTaskResponse, error)
 	RegisterWorker(context.Context, *RegisterWorkerRequest) (*RegisterWorkerResponse, error)
 	Heartbeat(context.Context, *HeartbeatRequest) (*HeartbeatResponse, error)
 	mustEmbedUnimplementedMasterApiServer()
@@ -101,11 +101,11 @@ type MasterApiServer interface {
 // pointer dereference when methods are called.
 type UnimplementedMasterApiServer struct{}
 
-func (UnimplementedMasterApiServer) GetTask(context.Context, *GetTaskRequest) (*GetTaskResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTask not implemented")
+func (UnimplementedMasterApiServer) GetMapTask(context.Context, *GetMapTaskRequest) (*GetMapTaskResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMapTask not implemented")
 }
-func (UnimplementedMasterApiServer) SubmitTask(context.Context, *SubmitTaskRequest) (*SubmitTaskResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SubmitTask not implemented")
+func (UnimplementedMasterApiServer) SubmitMapTask(context.Context, *SubmitMapTaskRequest) (*SubmitMapTaskResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubmitMapTask not implemented")
 }
 func (UnimplementedMasterApiServer) RegisterWorker(context.Context, *RegisterWorkerRequest) (*RegisterWorkerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterWorker not implemented")
@@ -134,38 +134,38 @@ func RegisterMasterApiServer(s grpc.ServiceRegistrar, srv MasterApiServer) {
 	s.RegisterService(&MasterApi_ServiceDesc, srv)
 }
 
-func _MasterApi_GetTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTaskRequest)
+func _MasterApi_GetMapTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMapTaskRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MasterApiServer).GetTask(ctx, in)
+		return srv.(MasterApiServer).GetMapTask(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MasterApi_GetTask_FullMethodName,
+		FullMethod: MasterApi_GetMapTask_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MasterApiServer).GetTask(ctx, req.(*GetTaskRequest))
+		return srv.(MasterApiServer).GetMapTask(ctx, req.(*GetMapTaskRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MasterApi_SubmitTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SubmitTaskRequest)
+func _MasterApi_SubmitMapTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SubmitMapTaskRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MasterApiServer).SubmitTask(ctx, in)
+		return srv.(MasterApiServer).SubmitMapTask(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MasterApi_SubmitTask_FullMethodName,
+		FullMethod: MasterApi_SubmitMapTask_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MasterApiServer).SubmitTask(ctx, req.(*SubmitTaskRequest))
+		return srv.(MasterApiServer).SubmitMapTask(ctx, req.(*SubmitMapTaskRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -214,12 +214,12 @@ var MasterApi_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MasterApiServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetTask",
-			Handler:    _MasterApi_GetTask_Handler,
+			MethodName: "GetMapTask",
+			Handler:    _MasterApi_GetMapTask_Handler,
 		},
 		{
-			MethodName: "SubmitTask",
-			Handler:    _MasterApi_SubmitTask_Handler,
+			MethodName: "SubmitMapTask",
+			Handler:    _MasterApi_SubmitMapTask_Handler,
 		},
 		{
 			MethodName: "RegisterWorker",

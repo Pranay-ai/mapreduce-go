@@ -3,26 +3,33 @@ package master
 import (
 	"fmt"
 	"log"
+	"time"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 type Worker struct {
-	worker_id   int
-	worker_addr string
-	worker_port int
-	conn        *grpc.ClientConn
+	workerID     string
+	workerAddr   string
+	workerPort   string
+	conn         *grpc.ClientConn
+	tasks        []string  // List of tasks assigned to the worker
+	lastPingTime time.Time // Last time the worker pinged the master
 }
 
-func NewWorker(worker_id int, worker_addr string, worker_port int) *Worker {
-	conn, err := grpc.Dial(fmt.Sprintf("%s:%d", worker_addr, worker_port), grpc.WithInsecure())
+func NewWorker(workerID, workerAddr, workerPort string) *Worker {
+	address := fmt.Sprintf("%s:%s", workerAddr, workerPort)
+	conn, err := grpc.Dial(address, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
-		log.Fatalf("Failed to connect to worker: %v", err)
+		log.Fatalf("Failed to connect to worker %s at %s: %v", workerID, address, err)
 	}
 	return &Worker{
-		worker_id:   worker_id,
-		worker_addr: worker_addr,
-		worker_port: worker_port,
-		conn:        conn,
+		workerID:     workerID,
+		workerAddr:   workerAddr,
+		workerPort:   workerPort,
+		conn:         conn,
+		tasks:        make([]string, 0),
+		lastPingTime: time.Now(),
 	}
 }

@@ -21,27 +21,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type GetTaskRequest struct {
+type GetMapTaskRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	WorkerId      string                 `protobuf:"bytes,1,opt,name=worker_id,json=workerId,proto3" json:"worker_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetTaskRequest) Reset() {
-	*x = GetTaskRequest{}
+func (x *GetMapTaskRequest) Reset() {
+	*x = GetMapTaskRequest{}
 	mi := &file_masterapi_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetTaskRequest) String() string {
+func (x *GetMapTaskRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetTaskRequest) ProtoMessage() {}
+func (*GetMapTaskRequest) ProtoMessage() {}
 
-func (x *GetTaskRequest) ProtoReflect() protoreflect.Message {
+func (x *GetMapTaskRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_masterapi_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -53,19 +53,19 @@ func (x *GetTaskRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetTaskRequest.ProtoReflect.Descriptor instead.
-func (*GetTaskRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetMapTaskRequest.ProtoReflect.Descriptor instead.
+func (*GetMapTaskRequest) Descriptor() ([]byte, []int) {
 	return file_masterapi_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetTaskRequest) GetWorkerId() string {
+func (x *GetMapTaskRequest) GetWorkerId() string {
 	if x != nil {
 		return x.WorkerId
 	}
 	return ""
 }
 
-type GetTaskResponse struct {
+type GetMapTaskResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TaskId        string                 `protobuf:"bytes,1,opt,name=task_id,json=taskId,proto3" json:"task_id,omitempty"`
 	TaskType      string                 `protobuf:"bytes,2,opt,name=task_type,json=taskType,proto3" json:"task_type,omitempty"`
@@ -74,20 +74,20 @@ type GetTaskResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetTaskResponse) Reset() {
-	*x = GetTaskResponse{}
+func (x *GetMapTaskResponse) Reset() {
+	*x = GetMapTaskResponse{}
 	mi := &file_masterapi_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetTaskResponse) String() string {
+func (x *GetMapTaskResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetTaskResponse) ProtoMessage() {}
+func (*GetMapTaskResponse) ProtoMessage() {}
 
-func (x *GetTaskResponse) ProtoReflect() protoreflect.Message {
+func (x *GetMapTaskResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_masterapi_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -99,33 +99,33 @@ func (x *GetTaskResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetTaskResponse.ProtoReflect.Descriptor instead.
-func (*GetTaskResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetMapTaskResponse.ProtoReflect.Descriptor instead.
+func (*GetMapTaskResponse) Descriptor() ([]byte, []int) {
 	return file_masterapi_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetTaskResponse) GetTaskId() string {
+func (x *GetMapTaskResponse) GetTaskId() string {
 	if x != nil {
 		return x.TaskId
 	}
 	return ""
 }
 
-func (x *GetTaskResponse) GetTaskType() string {
+func (x *GetMapTaskResponse) GetTaskType() string {
 	if x != nil {
 		return x.TaskType
 	}
 	return ""
 }
 
-func (x *GetTaskResponse) GetTaskDataPath() string {
+func (x *GetMapTaskResponse) GetTaskDataPath() string {
 	if x != nil {
 		return x.TaskDataPath
 	}
 	return ""
 }
 
-type SubmitTaskRequest struct {
+type SubmitMapTaskRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	WorkerId       string                 `protobuf:"bytes,1,opt,name=worker_id,json=workerId,proto3" json:"worker_id,omitempty"`
 	TaskId         string                 `protobuf:"bytes,2,opt,name=task_id,json=taskId,proto3" json:"task_id,omitempty"`
@@ -135,20 +135,20 @@ type SubmitTaskRequest struct {
 	sizeCache      protoimpl.SizeCache
 }
 
-func (x *SubmitTaskRequest) Reset() {
-	*x = SubmitTaskRequest{}
+func (x *SubmitMapTaskRequest) Reset() {
+	*x = SubmitMapTaskRequest{}
 	mi := &file_masterapi_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SubmitTaskRequest) String() string {
+func (x *SubmitMapTaskRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SubmitTaskRequest) ProtoMessage() {}
+func (*SubmitMapTaskRequest) ProtoMessage() {}
 
-func (x *SubmitTaskRequest) ProtoReflect() protoreflect.Message {
+func (x *SubmitMapTaskRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_masterapi_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -160,40 +160,40 @@ func (x *SubmitTaskRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SubmitTaskRequest.ProtoReflect.Descriptor instead.
-func (*SubmitTaskRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use SubmitMapTaskRequest.ProtoReflect.Descriptor instead.
+func (*SubmitMapTaskRequest) Descriptor() ([]byte, []int) {
 	return file_masterapi_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *SubmitTaskRequest) GetWorkerId() string {
+func (x *SubmitMapTaskRequest) GetWorkerId() string {
 	if x != nil {
 		return x.WorkerId
 	}
 	return ""
 }
 
-func (x *SubmitTaskRequest) GetTaskId() string {
+func (x *SubmitMapTaskRequest) GetTaskId() string {
 	if x != nil {
 		return x.TaskId
 	}
 	return ""
 }
 
-func (x *SubmitTaskRequest) GetTaskType() string {
+func (x *SubmitMapTaskRequest) GetTaskType() string {
 	if x != nil {
 		return x.TaskType
 	}
 	return ""
 }
 
-func (x *SubmitTaskRequest) GetResultDataPath() string {
+func (x *SubmitMapTaskRequest) GetResultDataPath() string {
 	if x != nil {
 		return x.ResultDataPath
 	}
 	return ""
 }
 
-type SubmitTaskResponse struct {
+type SubmitMapTaskResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -201,20 +201,20 @@ type SubmitTaskResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *SubmitTaskResponse) Reset() {
-	*x = SubmitTaskResponse{}
+func (x *SubmitMapTaskResponse) Reset() {
+	*x = SubmitMapTaskResponse{}
 	mi := &file_masterapi_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SubmitTaskResponse) String() string {
+func (x *SubmitMapTaskResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SubmitTaskResponse) ProtoMessage() {}
+func (*SubmitMapTaskResponse) ProtoMessage() {}
 
-func (x *SubmitTaskResponse) ProtoReflect() protoreflect.Message {
+func (x *SubmitMapTaskResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_masterapi_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -226,19 +226,19 @@ func (x *SubmitTaskResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SubmitTaskResponse.ProtoReflect.Descriptor instead.
-func (*SubmitTaskResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use SubmitMapTaskResponse.ProtoReflect.Descriptor instead.
+func (*SubmitMapTaskResponse) Descriptor() ([]byte, []int) {
 	return file_masterapi_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *SubmitTaskResponse) GetSuccess() bool {
+func (x *SubmitMapTaskResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *SubmitTaskResponse) GetMessage() string {
+func (x *SubmitMapTaskResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -457,19 +457,19 @@ var File_masterapi_proto protoreflect.FileDescriptor
 
 const file_masterapi_proto_rawDesc = "" +
 	"\n" +
-	"\x0fmasterapi.proto\"-\n" +
-	"\x0eGetTaskRequest\x12\x1b\n" +
-	"\tworker_id\x18\x01 \x01(\tR\bworkerId\"m\n" +
-	"\x0fGetTaskResponse\x12\x17\n" +
+	"\x0fmasterapi.proto\"0\n" +
+	"\x11GetMapTaskRequest\x12\x1b\n" +
+	"\tworker_id\x18\x01 \x01(\tR\bworkerId\"p\n" +
+	"\x12GetMapTaskResponse\x12\x17\n" +
 	"\atask_id\x18\x01 \x01(\tR\x06taskId\x12\x1b\n" +
 	"\ttask_type\x18\x02 \x01(\tR\btaskType\x12$\n" +
-	"\x0etask_data_path\x18\x03 \x01(\tR\ftaskDataPath\"\x90\x01\n" +
-	"\x11SubmitTaskRequest\x12\x1b\n" +
+	"\x0etask_data_path\x18\x03 \x01(\tR\ftaskDataPath\"\x93\x01\n" +
+	"\x14SubmitMapTaskRequest\x12\x1b\n" +
 	"\tworker_id\x18\x01 \x01(\tR\bworkerId\x12\x17\n" +
 	"\atask_id\x18\x02 \x01(\tR\x06taskId\x12\x1b\n" +
 	"\ttask_type\x18\x03 \x01(\tR\btaskType\x12(\n" +
-	"\x10result_data_path\x18\x04 \x01(\tR\x0eresultDataPath\"H\n" +
-	"\x12SubmitTaskResponse\x12\x18\n" +
+	"\x10result_data_path\x18\x04 \x01(\tR\x0eresultDataPath\"K\n" +
+	"\x15SubmitMapTaskResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"|\n" +
 	"\x15RegisterWorkerRequest\x12\x1b\n" +
@@ -484,11 +484,11 @@ const file_masterapi_proto_rawDesc = "" +
 	"\tworker_id\x18\x01 \x01(\tR\bworkerId\"G\n" +
 	"\x11HeartbeatResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\xe7\x01\n" +
-	"\tMasterApi\x12,\n" +
-	"\aGetTask\x12\x0f.GetTaskRequest\x1a\x10.GetTaskResponse\x125\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage2\xf9\x01\n" +
+	"\tMasterApi\x125\n" +
 	"\n" +
-	"SubmitTask\x12\x12.SubmitTaskRequest\x1a\x13.SubmitTaskResponse\x12A\n" +
+	"GetMapTask\x12\x12.GetMapTaskRequest\x1a\x13.GetMapTaskResponse\x12>\n" +
+	"\rSubmitMapTask\x12\x15.SubmitMapTaskRequest\x1a\x16.SubmitMapTaskResponse\x12A\n" +
 	"\x0eRegisterWorker\x12\x16.RegisterWorkerRequest\x1a\x17.RegisterWorkerResponse\x122\n" +
 	"\tHeartbeat\x12\x11.HeartbeatRequest\x1a\x12.HeartbeatResponseB\x0eZ\f./;masterapib\x06proto3"
 
@@ -506,22 +506,22 @@ func file_masterapi_proto_rawDescGZIP() []byte {
 
 var file_masterapi_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_masterapi_proto_goTypes = []any{
-	(*GetTaskRequest)(nil),         // 0: GetTaskRequest
-	(*GetTaskResponse)(nil),        // 1: GetTaskResponse
-	(*SubmitTaskRequest)(nil),      // 2: SubmitTaskRequest
-	(*SubmitTaskResponse)(nil),     // 3: SubmitTaskResponse
+	(*GetMapTaskRequest)(nil),      // 0: GetMapTaskRequest
+	(*GetMapTaskResponse)(nil),     // 1: GetMapTaskResponse
+	(*SubmitMapTaskRequest)(nil),   // 2: SubmitMapTaskRequest
+	(*SubmitMapTaskResponse)(nil),  // 3: SubmitMapTaskResponse
 	(*RegisterWorkerRequest)(nil),  // 4: RegisterWorkerRequest
 	(*RegisterWorkerResponse)(nil), // 5: RegisterWorkerResponse
 	(*HeartbeatRequest)(nil),       // 6: HeartbeatRequest
 	(*HeartbeatResponse)(nil),      // 7: HeartbeatResponse
 }
 var file_masterapi_proto_depIdxs = []int32{
-	0, // 0: MasterApi.GetTask:input_type -> GetTaskRequest
-	2, // 1: MasterApi.SubmitTask:input_type -> SubmitTaskRequest
+	0, // 0: MasterApi.GetMapTask:input_type -> GetMapTaskRequest
+	2, // 1: MasterApi.SubmitMapTask:input_type -> SubmitMapTaskRequest
 	4, // 2: MasterApi.RegisterWorker:input_type -> RegisterWorkerRequest
 	6, // 3: MasterApi.Heartbeat:input_type -> HeartbeatRequest
-	1, // 4: MasterApi.GetTask:output_type -> GetTaskResponse
-	3, // 5: MasterApi.SubmitTask:output_type -> SubmitTaskResponse
+	1, // 4: MasterApi.GetMapTask:output_type -> GetMapTaskResponse
+	3, // 5: MasterApi.SubmitMapTask:output_type -> SubmitMapTaskResponse
 	5, // 6: MasterApi.RegisterWorker:output_type -> RegisterWorkerResponse
 	7, // 7: MasterApi.Heartbeat:output_type -> HeartbeatResponse
 	4, // [4:8] is the sub-list for method output_type

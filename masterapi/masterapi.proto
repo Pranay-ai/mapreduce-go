@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option go_package = "./;masterapi";
+
+service MasterApi {
+
+    rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
+    rpc SubmitTask(SubmitTaskRequest) returns (SubmitTaskResponse);
+    rpc RegisterWorker (RegisterWorkerRequest) returns (RegisterWorkerResponse);
+    rpc Heartbeat(HeartbeatRequest) returns (HeartbeatResponse);
+
+
+}
+

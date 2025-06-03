@@ -68,7 +68,6 @@ func (x *GetMapTaskRequest) GetWorkerId() string {
 type GetMapTaskResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TaskId        string                 `protobuf:"bytes,1,opt,name=task_id,json=taskId,proto3" json:"task_id,omitempty"`
-	TaskType      string                 `protobuf:"bytes,2,opt,name=task_type,json=taskType,proto3" json:"task_type,omitempty"`
 	TaskDataPath  string                 `protobuf:"bytes,3,opt,name=task_data_path,json=taskDataPath,proto3" json:"task_data_path,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -111,13 +110,6 @@ func (x *GetMapTaskResponse) GetTaskId() string {
 	return ""
 }
 
-func (x *GetMapTaskResponse) GetTaskType() string {
-	if x != nil {
-		return x.TaskType
-	}
-	return ""
-}
-
 func (x *GetMapTaskResponse) GetTaskDataPath() string {
 	if x != nil {
 		return x.TaskDataPath
@@ -129,7 +121,6 @@ type SubmitMapTaskRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	WorkerId       string                 `protobuf:"bytes,1,opt,name=worker_id,json=workerId,proto3" json:"worker_id,omitempty"`
 	TaskId         string                 `protobuf:"bytes,2,opt,name=task_id,json=taskId,proto3" json:"task_id,omitempty"`
-	TaskType       string                 `protobuf:"bytes,3,opt,name=task_type,json=taskType,proto3" json:"task_type,omitempty"`
 	ResultDataPath string                 `protobuf:"bytes,4,opt,name=result_data_path,json=resultDataPath,proto3" json:"result_data_path,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
@@ -175,13 +166,6 @@ func (x *SubmitMapTaskRequest) GetWorkerId() string {
 func (x *SubmitMapTaskRequest) GetTaskId() string {
 	if x != nil {
 		return x.TaskId
-	}
-	return ""
-}
-
-func (x *SubmitMapTaskRequest) GetTaskType() string {
-	if x != nil {
-		return x.TaskType
 	}
 	return ""
 }
@@ -459,15 +443,13 @@ const file_masterapi_proto_rawDesc = "" +
 	"\n" +
 	"\x0fmasterapi.proto\"0\n" +
 	"\x11GetMapTaskRequest\x12\x1b\n" +
-	"\tworker_id\x18\x01 \x01(\tR\bworkerId\"p\n" +
+	"\tworker_id\x18\x01 \x01(\tR\bworkerId\"S\n" +
 	"\x12GetMapTaskResponse\x12\x17\n" +
-	"\atask_id\x18\x01 \x01(\tR\x06taskId\x12\x1b\n" +
-	"\ttask_type\x18\x02 \x01(\tR\btaskType\x12$\n" +
-	"\x0etask_data_path\x18\x03 \x01(\tR\ftaskDataPath\"\x93\x01\n" +
+	"\atask_id\x18\x01 \x01(\tR\x06taskId\x12$\n" +
+	"\x0etask_data_path\x18\x03 \x01(\tR\ftaskDataPath\"v\n" +
 	"\x14SubmitMapTaskRequest\x12\x1b\n" +
 	"\tworker_id\x18\x01 \x01(\tR\bworkerId\x12\x17\n" +
-	"\atask_id\x18\x02 \x01(\tR\x06taskId\x12\x1b\n" +
-	"\ttask_type\x18\x03 \x01(\tR\btaskType\x12(\n" +
+	"\atask_id\x18\x02 \x01(\tR\x06taskId\x12(\n" +
 	"\x10result_data_path\x18\x04 \x01(\tR\x0eresultDataPath\"K\n" +
 	"\x15SubmitMapTaskResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
